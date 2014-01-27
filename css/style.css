@@ -1,0 +1,33 @@
+header {
+	min-height: 50px;
+	width: 100%;
+	font-family: arial;
+	background-color: black;
+	color: white;
+}
+
+	h1 {
+		float: left;
+		margin-top: 20px;
+		margin-left: 15px;
+		font-weight: lighter;
+		display: inline-block;
+	}
+
+	nav li {
+		float: right;
+		display: inline-block;
+		margin-right: 15px;
+		font-size: 20px;
+		font-weight: lighter;
+	}
+
+	nav a {
+		text-decoration: none;
+		color: white;
+		display: inline-block;
+		padding:5px;
+	}
+		nav a:hover {
+			color: orange;
+		}
