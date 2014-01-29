@@ -13,6 +13,15 @@ header {
 		font-weight: lighter;
 		display: inline-block;
 	}
+		h1 a{
+			text-decoration: none;
+			color: white;
+			display: inline-block;
+		}
+
+		h1 a:hover {
+			color:orange;
+		}
 
 	nav li {
 		float: right;
