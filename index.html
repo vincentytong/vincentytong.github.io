@@ -18,75 +18,75 @@
 		  ga('send', 'pageview');
 
 		  jQuery(function($) {
-    // Debug flag
-    var debugMode = true;
+			    // Debug flag
+			    var debugMode = true;
 
-    // Default time delay before checking location
-    var callBackTime = 100;
+			    // Default time delay before checking location
+			    var callBackTime = 100;
 
-    // # px before tracking a reader
-    var readerLocation = 200;
-    var reader2Location = 800;
+			    // # px before tracking a reader
+			    var readerLocation = 200;
+			    var reader2Location = 800;
 
-    // Set some flags for tracking & execution
-    var timer = 0;
-    var scroller = false;
-    var middle = false;
-    var didComplete = false;
-    
-    // Get some information about the current page
-    var pageTitle = document.title;
+			    // Set some flags for tracking & execution
+			    var timer = 0;
+			    var scroller = false;
+			    var middle = false;
+			    var didComplete = false;
+			    
+			    // Get some information about the current page
+			    var pageTitle = document.title;
 
 
-    // Check the location and track user
-    function trackLocation() {
-        bottom = $(window).height() + $(window).scrollTop();
-        height = $(document).height();
+			    // Check the location and track user
+			    function trackLocation() {
+			        bottom = $(window).height() + $(window).scrollTop();
+			        height = $(document).height();
 
-        // If user starts to scroll send an event
-        if (bottom > readerLocation && !scroller) {
-            if (!debugMode) {
-                ga('send', 'event', 'Reading', 'StartReading', pageTitle);
-                ga('set', 'dimension3', 'StartedScrolling');
-            } else {
-                alert('started reading');
-            }
-            scroller = true;
-        }
+			        // If user starts to scroll send an event
+			        if (bottom > readerLocation && !scroller) {
+			            if (!debugMode) {
+			                ga('set', 'dimension3', 'StartedScrolling');
+			                ga('send', 'event', 'ReadingPage', 'StartReading', pageTitle);
+			            } else {
+			                alert('started reading');
+			            }
+			            scroller = true;
+			        }
 
-        // If user has hit the bottom of the content send an event
-        if (bottom >= reader2Location && !middle) {
-            if (!debugMode) {
-                ga('send', 'event', 'Reading', 'GotToMiddle', pageTitle);
-                ga('set', 'dimension3', 'ScrolledToMiddle');
-            } else {
-                alert('end content section');
-            }
-            middle = true;
-        }
+			        // If user has hit the bottom of the content send an event
+			        if (bottom >= reader2Location && !middle) {
+			            if (!debugMode) {
+			                ga('set', 'dimension3', 'ScrolledToMiddle');
+			                ga('send', 'event', 'ReadingPage', 'GotToMiddle', pageTitle);
+			            } else {
+			                alert('end content section');
+			            }
+			            middle = true;
+			        }
 
-        // If user has hit the bottom of page send an event
-        if (bottom >= height && !didComplete) {
-            if (!debugMode) {
-                ga('send', 'event', 'Reading', 'GotToBottom', pageTitle);
-                ga('set', 'dimension3', 'ScrolledToBottom');
-            } else {
-                alert('bottom of page');
-            }
-            didComplete = true;
-        }
-    }
+			        // If user has hit the bottom of page send an event
+			        if (bottom >= height && !didComplete) {
+			            if (!debugMode) {
+			                ga('set', 'dimension3', 'ScrolledToBottom');
+			                ga('send', 'event', 'ReadingPage', 'GotToBottom', pageTitle);
+			            } else {
+			                alert('bottom of page');
+			            }
+			            didComplete = true;
+			        }
+			    }
 
-    // Track the scrolling and track location
-    $(window).scroll(function() {
-        if (timer) {
-            clearTimeout(timer);
-        }
+			    // Track the scrolling and track location
+			    $(window).scroll(function() {
+			        if (timer) {
+			            clearTimeout(timer);
+			        }
 
-        // Use a buffer so we don't call trackLocation too often.
-        timer = setTimeout(trackLocation, callBackTime);
-    });
-});
+			        // Use a buffer so we don't call trackLocation too often.
+			        timer = setTimeout(trackLocation, callBackTime);
+			    });
+			});
 
 		</script>
 	</head>
