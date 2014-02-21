@@ -25,7 +25,7 @@
     var callBackTime = 100;
 
     // # px before tracking a reader
-    var readerLocation = 300;
+    var readerLocation = 200;
     var reader2Location = 700;
 
     // Set some flags for tracking & execution
@@ -63,7 +63,8 @@
         // If user has hit the bottom of the content send an event
         if (bottom >= reader2Location && !middle) {
             if (!debugMode) {
-                ga('send', 'event', 'Reading', 'ContentBottom', pageTitle);
+                ga('send', 'event', 'Reading', 'GotToMiddle', pageTitle);
+                ga('set', 'dimension3', 'ScrolledToMiddle');
             } else {
                 alert('end content section');
             }
