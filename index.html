@@ -25,18 +25,14 @@
     var callBackTime = 100;
 
     // # px before tracking a reader
-    var readerLocation = 750;
+    var readerLocation = 300;
+    var reader2Location = 750;
 
     // Set some flags for tracking & execution
     var timer = 0;
     var scroller = false;
     var endContent = false;
     var didComplete = false;
-
-    // Set some time variables to calculate reading time
-    // var startTime = new Date();
-    // var beginning = startTime.getTime();
-    // var totalTime = 0;
     
     // Get some information about the current page
     var pageTitle = document.title;
@@ -55,11 +51,9 @@
 
         // If user starts to scroll send an event
         if (bottom > readerLocation && !scroller) {
-            // currentTime = new Date();
-            // scrollStart = currentTime.getTime();
-            // timeToScroll = Math.round((scrollStart - beginning) / 1000);
             if (!debugMode) {
                 ga('send', 'event', 'Reading', 'StartReading', pageTitle);
+                ga('set', 'dimension3', 'StartedScrolling');
             } else {
                 alert('started reading');
             }
@@ -67,32 +61,22 @@
         }
 
         // If user has hit the bottom of the content send an event
-        if (bottom >= $('.content').scrollTop() + $('.content').innerHeight() && !endContent) {
-            // currentTime = new Date();
-            // contentScrollEnd = currentTime.getTime();
-            // timeToContentEnd = Math.round((contentScrollEnd - scrollStart) / 1000);
+        if (bottom >= reader2Location && !scroller) {
             if (!debugMode) {
-                 if (timeToContentEnd < 60) {
-                    ga('set', 'dimension5', 'Scanner'); 
-                } else {
-                    ga('set', 'dimension5', 'Reader'); 
-                }
                 ga('send', 'event', 'Reading', 'ContentBottom', pageTitle);
             } else {
-                alert('end content section');
+                alert('read to middle');
             }
             endContent = true;
         }
 
         // If user has hit the bottom of page send an event
         if (bottom >= height && !didComplete) {
-            // currentTime = new Date();
-            // end = currentTime.getTime();
-            // totalTime = Math.round((end - scrollStart) / 1000);
             if (!debugMode) {
                 ga('send', 'event', 'Reading', 'PageBottom', pageTitle);
+                ga('set', 'dimension3', 'ScrolledToBottom');
             } else {
-                alert('bottom of page');
+                alert('read all of it');
             }
             didComplete = true;
         }
@@ -167,6 +151,7 @@
 	<hr>
 	<hr>
 	<hr>
+	<a onclick="ga('send', 'event', 'Outcome', 'click', 'PageEnd')" href="#"> Finished </a>
 </div>
 
 <footer>
