@@ -60,7 +60,7 @@
         }
 
         // If user has hit the bottom of the content send an event
-        if (bottom >= readerLocation && !scroller) {
+        if (bottom >= $('.content').scrollTop() + $('.content').innerHeight() && !endContent) {
             if (!debugMode) {
                 ga('send', 'event', 'Reading', 'ContentBottom', pageTitle);
             } else {
