@@ -26,7 +26,6 @@
 
     // # px before tracking a reader
     var readerLocation = 300;
-    var reader2Location = 750;
 
     // Set some flags for tracking & execution
     var timer = 0;
@@ -61,11 +60,11 @@
         }
 
         // If user has hit the bottom of the content send an event
-        if (bottom >= reader2Location && !scroller) {
+        if (bottom >= readerLocation && !scroller) {
             if (!debugMode) {
                 ga('send', 'event', 'Reading', 'ContentBottom', pageTitle);
             } else {
-                alert('read to middle');
+                alert('end content section');
             }
             endContent = true;
         }
@@ -76,7 +75,7 @@
                 ga('send', 'event', 'Reading', 'PageBottom', pageTitle);
                 ga('set', 'dimension3', 'ScrolledToBottom');
             } else {
-                alert('read all of it');
+                alert('bottom of page');
             }
             didComplete = true;
         }
