@@ -19,13 +19,13 @@
 
 		  jQuery(function($) {
     // Debug flag
-    var debugMode = true;
+    var debugMode = false;
 
     // Default time delay before checking location
     var callBackTime = 100;
 
     // # px before tracking a reader
-    var readerLocation = 150;
+    var readerLocation = 750;
 
     // Set some flags for tracking & execution
     var timer = 0;
@@ -59,7 +59,7 @@
             scrollStart = currentTime.getTime();
             timeToScroll = Math.round((scrollStart - beginning) / 1000);
             if (!debugMode) {
-                ga('send', 'event', 'Reading', 'StartReading', pageTitle, timeToScroll, {'metric1' : timeToScroll});
+                ga('send', 'event', 'Reading', 'StartReading', pageTitle);
             } else {
                 alert('started reading ' + timeToScroll);
             }
@@ -77,7 +77,7 @@
                 } else {
                     ga('set', 'dimension5', 'Reader'); 
                 }
-                ga('send', 'event', 'Reading', 'ContentBottom', pageTitle, timeToContentEnd, {'metric2' : timeToContentEnd});
+                ga('send', 'event', 'Reading', 'ContentBottom', pageTitle);
             } else {
                 alert('end content section '+timeToContentEnd);
             }
@@ -90,7 +90,7 @@
             end = currentTime.getTime();
             totalTime = Math.round((end - scrollStart) / 1000);
             if (!debugMode) {
-                ga('send', 'event', 'Reading', 'PageBottom', pageTitle, totalTime, {'metric3' : totalTime});
+                ga('send', 'event', 'Reading', 'PageBottom', pageTitle);
             } else {
                 alert('bottom of page '+totalTime);
             }
