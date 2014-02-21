@@ -70,7 +70,7 @@
 			        // If user has hit the bottom of page send an event
 			        if (bottom >= height && !didComplete) {
 			            if (!debugMode) {
-			                ga('set', 'dimension3', 'ScrolledToBottom');
+			                // ga('set', 'dimension3', 'ScrolledToBottom');
 			                ga('set', 'dimension4', 'ScrolledToBottomHit');
 			                ga('send', 'event', 'ReadingPage', 'GotToBottom', pageTitle);
 			            } else {
