@@ -47,6 +47,7 @@
 			        if (bottom > readerLocation && !scroller) {
 			            if (!debugMode) {
 			                ga('set', 'dimension3', 'StartedScrolling');
+			                ga('set', 'dimension4', 'StartedScrollingHit');
 			                ga('send', 'event', 'ReadingPage', 'StartReading', pageTitle);
 			            } else {
 			                alert('started reading');
@@ -58,6 +59,7 @@
 			        if (bottom >= reader2Location && !middle) {
 			            if (!debugMode) {
 			                ga('set', 'dimension3', 'ScrolledToMiddle');
+			                ga('set', 'dimension4', 'ScrolledToMiddleHit');
 			                ga('send', 'event', 'ReadingPage', 'GotToMiddle', pageTitle);
 			            } else {
 			                alert('end content section');
@@ -69,6 +71,7 @@
 			        if (bottom >= height && !didComplete) {
 			            if (!debugMode) {
 			                ga('set', 'dimension3', 'ScrolledToBottom');
+			                ga('set', 'dimension4', 'ScrolledToBottomHit');
 			                ga('send', 'event', 'ReadingPage', 'GotToBottom', pageTitle);
 			            } else {
 			                alert('bottom of page');
@@ -146,7 +149,7 @@
 	<hr>
 	<hr>
 	<hr>
-	<a onclick="ga('send', 'event', 'Outcome', 'click', 'PageEnd', 0)" href="#"> Finished </a>
+	<a onclick="ga('send', 'event', 'Outcome', 'click', 'PageEnd', 1)" href="#"> Finished </a>
 </div>
 
 <footer>
