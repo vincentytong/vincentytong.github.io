@@ -26,11 +26,12 @@
 
     // # px before tracking a reader
     var readerLocation = 300;
+    var reader2Location = 700;
 
     // Set some flags for tracking & execution
     var timer = 0;
     var scroller = false;
-    var endContent = false;
+    var middle = false;
     var didComplete = false;
     
     // Get some information about the current page
@@ -60,13 +61,13 @@
         }
 
         // If user has hit the bottom of the content send an event
-        if (bottom >= $('.content').scrollTop() + $('.content').innerHeight() && !endContent) {
+        if (bottom >= reader2Location && !middle) {
             if (!debugMode) {
                 ga('send', 'event', 'Reading', 'ContentBottom', pageTitle);
             } else {
                 alert('end content section');
             }
-            endContent = true;
+            middle = true;
         }
 
         // If user has hit the bottom of page send an event
