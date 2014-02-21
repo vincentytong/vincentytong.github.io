@@ -37,12 +37,6 @@
     // Get some information about the current page
     var pageTitle = document.title;
 
-    // Track the aticle load
-    if (!debugMode) {
-        ga('send', 'event', 'Reading', 'ArticleLoaded', pageTitle, {'nonInteraction': 1});
-    } else {
-        alert('The page has loaded. Woohoo.');    
-    }
 
     // Check the location and track user
     function trackLocation() {
@@ -74,7 +68,7 @@
         // If user has hit the bottom of page send an event
         if (bottom >= height && !didComplete) {
             if (!debugMode) {
-                ga('send', 'event', 'Reading', 'PageBottom', pageTitle);
+                ga('send', 'event', 'Reading', 'GotToBottom', pageTitle);
                 ga('set', 'dimension3', 'ScrolledToBottom');
             } else {
                 alert('bottom of page');
