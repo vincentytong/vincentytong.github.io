@@ -19,7 +19,7 @@
 
 		  jQuery(function($) {
     // Debug flag
-    var debugMode = false;
+    var debugMode = true;
 
     // Default time delay before checking location
     var callBackTime = 100;
@@ -34,9 +34,9 @@
     var didComplete = false;
 
     // Set some time variables to calculate reading time
-    var startTime = new Date();
-    var beginning = startTime.getTime();
-    var totalTime = 0;
+    // var startTime = new Date();
+    // var beginning = startTime.getTime();
+    // var totalTime = 0;
     
     // Get some information about the current page
     var pageTitle = document.title;
@@ -55,22 +55,22 @@
 
         // If user starts to scroll send an event
         if (bottom > readerLocation && !scroller) {
-            currentTime = new Date();
-            scrollStart = currentTime.getTime();
-            timeToScroll = Math.round((scrollStart - beginning) / 1000);
+            // currentTime = new Date();
+            // scrollStart = currentTime.getTime();
+            // timeToScroll = Math.round((scrollStart - beginning) / 1000);
             if (!debugMode) {
                 ga('send', 'event', 'Reading', 'StartReading', pageTitle);
             } else {
-                alert('started reading ' + timeToScroll);
+                alert('started reading');
             }
             scroller = true;
         }
 
         // If user has hit the bottom of the content send an event
         if (bottom >= $('.content').scrollTop() + $('.content').innerHeight() && !endContent) {
-            currentTime = new Date();
-            contentScrollEnd = currentTime.getTime();
-            timeToContentEnd = Math.round((contentScrollEnd - scrollStart) / 1000);
+            // currentTime = new Date();
+            // contentScrollEnd = currentTime.getTime();
+            // timeToContentEnd = Math.round((contentScrollEnd - scrollStart) / 1000);
             if (!debugMode) {
                  if (timeToContentEnd < 60) {
                     ga('set', 'dimension5', 'Scanner'); 
@@ -79,34 +79,34 @@
                 }
                 ga('send', 'event', 'Reading', 'ContentBottom', pageTitle);
             } else {
-                alert('end content section '+timeToContentEnd);
+                alert('end content section');
             }
             endContent = true;
         }
 
         // If user has hit the bottom of page send an event
         if (bottom >= height && !didComplete) {
-            currentTime = new Date();
-            end = currentTime.getTime();
-            totalTime = Math.round((end - scrollStart) / 1000);
+            // currentTime = new Date();
+            // end = currentTime.getTime();
+            // totalTime = Math.round((end - scrollStart) / 1000);
             if (!debugMode) {
                 ga('send', 'event', 'Reading', 'PageBottom', pageTitle);
             } else {
-                alert('bottom of page '+totalTime);
+                alert('bottom of page');
             }
             didComplete = true;
         }
     }
 
-    // Track the scrolling and track location
-    $(window).scroll(function() {
-        if (timer) {
-            clearTimeout(timer);
-        }
+    // // Track the scrolling and track location
+    // $(window).scroll(function() {
+    //     if (timer) {
+    //         clearTimeout(timer);
+    //     }
 
-        // Use a buffer so we don't call trackLocation too often.
-        timer = setTimeout(trackLocation, callBackTime);
-    });
+    //     // Use a buffer so we don't call trackLocation too often.
+    //     timer = setTimeout(trackLocation, callBackTime);
+    // });
 });
 
 		</script>
