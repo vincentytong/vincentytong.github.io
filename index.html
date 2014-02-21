@@ -67,7 +67,7 @@
         }
 
         // If user has hit the bottom of the content send an event
-        if (bottom >= $('.entry-content').scrollTop() + $('.entry-content').innerHeight() && !endContent) {
+        if (bottom >= $('.content').scrollTop() + $('.content').innerHeight() && !endContent) {
             currentTime = new Date();
             contentScrollEnd = currentTime.getTime();
             timeToContentEnd = Math.round((contentScrollEnd - scrollStart) / 1000);
